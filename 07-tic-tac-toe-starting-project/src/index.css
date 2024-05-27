@@ -189,6 +189,14 @@ ol {
   font-family: 'Caprasimo', cursive;
   padding: 1rem;
 }
+@media (max-width:600px) {
+  #game-board button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+  }
+  
+}
 
 #game-over {
   position: absolute;
