@@ -18,6 +18,7 @@ function App() {
       return updatedTurns;
     });
   }
+  console.log("activePlayer", activePlayer)
 
   return (
     <main>

@@ -7,11 +7,13 @@ const initialGameBoard = [
 
 export default function GameBoard({onSelectSquare,turns, activePlayerSymbol}) {
   let gameBoard =initialGameBoard;
+  let playerSymbol="O";
 
   for(const turn of turns){
     const {square, player} =turn;
     const {row, col} =square;
     gameBoard[row][col]=player;
+    
   }
   // const [gameBoard,setGameBoard] = useState(initialGameBoard);
 
