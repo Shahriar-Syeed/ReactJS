@@ -4,17 +4,20 @@ import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 
 function App() {
-  const [gameTurn, setGameTurn] = useState([]);
+  const [gameTurns, setGameTurns] = useState([]);
   const [activePlayer,setActivePlayer] = useState('X');
 
-  function handelSelectSquare(rowIndex, colIndex) {
-    setActivePlayer((currActivePlayer)=> currActivePlayer === "X" ? "O": "X");
-    setGameTurn(prevTurns=>{
+  function handleSelectSquare(rowIndex, colIndex) {
+    setActivePlayer((currActivePlayer)=> currActivePlayer === 'X' ? 'O': 'X');
+    setGameTurns(prevTurns=>{
       let currentPlayer = 'X';
-      if(prevTurns.length>0 && prevTurns[0]==='X'){
+      if(prevTurns.length>0 && prevTurns[0].player === 'X'){
         currentPlayer = "O";
       }
-      const updatedTurns =[{square:{row:rowIndex, col:colIndex,}, player:currentPlayer, },...prevTurns];
+      const updatedTurns =[
+         { square:{ row:rowIndex, col:colIndex }, player:currentPlayer },
+        ...prevTurns,
+      ];
       return updatedTurns;
     });
   }
@@ -27,9 +30,9 @@ function App() {
           <Player initialName="Player 1" symbol="X" isActive={activePlayer==='X'} />
           <Player initialName="Player 2" symbol="O" isActive={activePlayer==='O'}/>
         </ol>
-        <GameBoard onSelectSquare={handelSelectSquare} activePlayerSymbol={activePlayer} turns={gameTurn} />
+        <GameBoard onSelectSquare={handleSelectSquare} activePlayerSymbol={activePlayer} turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   )
 }
