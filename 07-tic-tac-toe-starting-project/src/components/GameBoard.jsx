@@ -5,8 +5,8 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard({onSelectSquare,turns, activePlayerSymbol}) {
-  let gameBoard =initialGameBoard.map(row=>[...row]);
+export default function GameBoard({onSelectSquare, turns, activePlayerSymbol}) {
+  let gameBoard =initialGameBoard;
   let playerSymbol="O";
 
   for(const turn of turns){
