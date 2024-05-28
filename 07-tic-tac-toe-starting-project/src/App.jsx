@@ -26,6 +26,29 @@ function deriveActivePlayer(gameTurns) {
   return currentPlayer;
 }
 
+function deriveGameBoard(gameTurns){
+  let gameBoard =[...initialGameBoard.map(innerArray=>[...innerArray])];
+  for(const turn of gameTurns){
+    const {square, player} =turn;
+    const {row, col} =square;
+    gameBoard[row][col]=player;    
+  }
+  return gameBoard;
+}
+
+function deriveWinner(gameBoard, players){
+  let winner =null;
+  for( const combination of WINNING_COMBINATIONS){
+    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column]
+    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column]
+    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column]
+    if(firstSquareSymbol && firstSquareSymbol===secondSquareSymbol && firstSquareSymbol===thirdSquareSymbol){
+      winner =players[firstSquareSymbol];
+    }    
+  }
+  return winner;
+}
+
 function App() {
   const[players, setPlayers] = useState({
     'X':'Player 1',
@@ -36,22 +59,24 @@ function App() {
   // const [hasWinner, setHasWinner] = useState(false);
 
   const activePlayer = deriveActivePlayer(gameTurns);
-  let gameBoard =[...initialGameBoard.map(innerArray=>[...innerArray])];
-  for(const turn of gameTurns){
-    const {square, player} =turn;
-    const {row, col} =square;
-    gameBoard[row][col]=player;    
-  }
-  console.log("gameBoard", gameBoard)
- let winner =null;
-  for( const combination of WINNING_COMBINATIONS){
-    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column]
-    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column]
-    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column]
-    if(firstSquareSymbol && firstSquareSymbol===secondSquareSymbol && firstSquareSymbol===thirdSquareSymbol){
-      winner =players[firstSquareSymbol];
-    }    
-  }
+  const gameBoard = deriveGameBoard(gameTurns);
+  // let gameBoard =[...initialGameBoard.map(innerArray=>[...innerArray])];
+  // for(const turn of gameTurns){
+  //   const {square, player} =turn;
+  //   const {row, col} =square;
+  //   gameBoard[row][col]=player;    
+  // }
+  // console.log("gameBoard", gameBoard)
+  const winner = deriveWinner(gameBoard, players);
+//  let winner =null;
+//   for( const combination of WINNING_COMBINATIONS){
+//     const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column]
+//     const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column]
+//     const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column]
+//     if(firstSquareSymbol && firstSquareSymbol===secondSquareSymbol && firstSquareSymbol===thirdSquareSymbol){
+//       winner =players[firstSquareSymbol];
+//     }    
+//   }
 
   const hasDraw = (gameTurns.length === 9 && !winner);
 

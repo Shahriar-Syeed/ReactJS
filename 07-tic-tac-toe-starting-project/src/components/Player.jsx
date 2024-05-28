@@ -10,8 +10,12 @@ function handleEditClick(){
     // setIsEditing(!isEditing); //=>false X (previous value = false) =>true schedules as state update to true
     // setIsEditing((editing)=>!editing); // it will pass the updated latest value to the next function
     setIsEditing((editing)=>!editing);
+    if(playerName ===""){
+        setPlayerName(initialName) ;
+    }
     if(isEditing){
-        onChangeName(symbol, playerName);
+
+        onChangeName(symbol, playerName );
     }
 }
 function handleChange(event){
