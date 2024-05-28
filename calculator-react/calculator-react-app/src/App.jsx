@@ -8,26 +8,32 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div class="calculator">
+        {/* <!-- Display --> */}
+        <div class="calculator-display">
+            <h1>0</h1>
+        </div>
+        {/* <!-- buttons --> */}
+        <div class="calculator-buttons">
+            <button class="operator" value="+">+</button>
+            <button class="operator" value="-">-</button>
+            <button class="operator" value="*">×</button>
+            <button class="operator" value="/">÷</button>
+            <button value="7">7</button>
+            <button value="8">8</button>
+            <button value="9">9</button>
+            <button value="4">4</button>
+            <button value="5">5</button>
+            <button value="6">6</button>
+            <button value="1">1</button>
+            <button value="2">2</button>
+            <button value="3">3</button>
+            <button class="decimal" value=".">.</button>
+            <button value="0">0</button>
+            <button class="clear" id="clear-btn">C</button>
+            <button class="equal-sign operator" value="=">=</button>
+        </div>
+    </div>
     </>
   )
 }
