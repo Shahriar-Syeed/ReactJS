@@ -180,3 +180,57 @@ h2 {
 .text-button:hover {
   background: #cbd8fc;
 }
+
+
+Tow way binding
+
+export default function Review({ feedback, name }) {
+  return (
+    <figure>
+      <blockquote>
+        <p>{feedback}</p>
+      </blockquote>
+      <figcaption>{name}</figcaption>
+    </figure>
+  );
+}
+
+import React, {useState} from 'react';
+import Review from './Review'
+// don't change the Component name "App"
+function App() {
+    const [name,setName]=useState('')
+    const [feedback,setFeedback]=useState('')
+    function handleChangeName(event){
+        setName(event.target.value)
+    }
+    function handleFeedback(event){
+        setFeedback(event.target.value);
+    }
+  return (
+    <>
+      <section id="feedback">
+        <h2>Please share some feedback</h2>
+        <p>
+          <label>Your Feedback</label>
+          <textarea onChange={handleFeedback} value={feedback} />
+        </p>
+        <p>
+          <label>Your Name</label>
+          <input type="text" onChange={handleChangeName} value={name}/>
+        </p>
+      </section>
+      <section id="draft">
+        <h2>Your feedback</h2>
+
+        <Review feedback={feedback} name={name}/>
+
+        <p>
+          <button>Save</button>
+        </p>
+      </section>
+    </>
+  );
+}
+
+export default App;
