@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import BtnNumber from './components/BtnNumber.jsx';
 
-let firstValue=null;
 let calculationOfValues = {
   '+': (x, y)=>(x+y).toString(),
   '-': (x, y)=>(x-y).toString(),
@@ -9,58 +8,84 @@ let calculationOfValues = {
   '/': (x, y)=>(x/y).toString(),
   '=': (x, y)=>y.toString(),
 };
-let displayNum = '';
+let firstValue=null;
+let displayNum = '0';
 let awaitingNextValue= false;
 
 
 function App() {
-  const [displayValue, setDisplayValue] = useState('0')
+  const [displayValue, setDisplayValue] = useState('0');
   const [sign, setSign]=useState('');
   //insert value
   function onInsertValue (event){
+    // if(displayValue === 'Error' ){
+    //   return;
+    // }
     const clickButtonValue= event.target.value;
-    if(clickButtonValue === '0'&& displayValue === '0'){
-      return;
-    }
-    displayNum=displayNum+`${clickButtonValue}`;
-    setDisplayValue(displayNum);
-  }
-
- 
-
-  function onInsertDecimal(){
-    if(!displayNum.includes('.')){
-      if(displayNum === "" ){
-        displayNum=displayNum+'0.';
-      }else{
-        displayNum=displayNum+'.';
+    if(displayNum==='0'){
+      displayNum = clickButtonValue;
+      if(clickButtonValue === 0){
+        return;
       }
+    }
+    else{
+      displayNum=displayNum+`${clickButtonValue}`;
+    }
+      setDisplayValue(displayNum);
+  }
+  // function onInsertZero(event){
+  //   if(displayValue !== '0'){
+  //     displayNum=displayNum+`${event.target.value}`;
+  //   setDisplayValue(displayNum);
+  //   }
+  // }
+  function onInsertDecimal(){
+    // if(displayValue === 'Error' ){
+    //   return;
+    // }
+    if(!displayNum.includes('.')){
+      // if(displayNum === "0" ){
+      //   displayNum=displayNum+'0.';
+      // }else{
+        displayNum=displayNum+'.';
+      // }
       setDisplayValue(displayNum);
     }
   }
 
   function calculationWithOperator(event){
     const operator= event.target.value;
-    if(!awaitingNextValue){
+    // if(displayValue === 'Error' ){
+    //   return;
+    // }
+    if(!awaitingNextValue ){
       firstValue= Number(displayValue);
       console.log('firstValue',firstValue)
       setSign(operator);
       awaitingNextValue=true;
-      displayNum='';
+      displayNum='0';
     }else{
       const result = calculationOfValues[sign](firstValue,Number(displayNum));
+      console.log("result", result, typeof result);
+      // if(typeof Number(result) !== Number){
+      //   setDisplayValue("Error");
+      //   setSign('');
+      //   return;
+      // }
       setDisplayValue(result);
       firstValue=Number(result);
       setSign(operator=== '='? '':operator);
       awaitingNextValue = (operator !== '=');
-      displayNum='';
+      displayNum='0';
     }
   }
 
   function resetCalculator(){
     setDisplayValue("0");
-    displayNum = '';
+    displayNum = '0';
     setSign('');
+    awaitingNextValue= false;
+    firstValue=null;
   }
   
   return (
