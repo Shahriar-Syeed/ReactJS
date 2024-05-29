@@ -1,32 +1,40 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import BtnNumber from './components/BtnNumber.jsx';
 
+let firstValue=null;
+let calculationOfValues = {
+  '+': (x, y)=>(x+y).toString(),
+  '-': (x, y)=>(x-y).toString(),
+  '×': (x, y)=>(x*y).toString(),
+  '/': (x, y)=>(x/y).toString(),
+  '=': (x, y)=>y.toString(),
+};
 let displayNum = '';
-let operatorSign='';
 let awaitingNextValue= false;
-// let firstValue;
-let secondValue;
-
 
 
 function App() {
   const [displayValue, setDisplayValue] = useState('0')
+  const [sign, setSign]=useState('');
+  //insert value
   function onInsertValue (event){
+    if(event.target.value === '0'&& displayValue === '0'){
+      return;
+    }
     displayNum=displayNum+`${event.target.value}`;
     setDisplayValue(displayNum);
   }
+
   function onInsertZero(event){
     if(displayValue !== '0'){
       displayNum=displayNum+`${event.target.value}`;
     setDisplayValue(displayNum);
     }
   }
-  function onInsertDecimal(){
-    if(awaitingNextValue){
-      return;
-    }
 
+  function onInsertDecimal(){
     if(!displayNum.includes('.')){
-      if(displayNum === ""){
+      if(displayNum === "" ){
         displayNum=displayNum+'0.';
       }else{
         displayNum=displayNum+'.';
@@ -35,50 +43,57 @@ function App() {
     }
   }
 
-  function addValues(event){
+  function calculationWithOperator(event){
+    const operator= event.target.value;
     if(!awaitingNextValue){
-      const firstValue= Number(displayValue);
-  awaitingNextValue=true;
-  operatorSign=event.target.value;
-  displayNum='';
-    }else{
-      const total = firstValue + Number(displayValue);
-      setDisplayValue(total.toString());
+      firstValue= Number(displayValue);
+      console.log('firstValue',firstValue)
+      setSign(operator);
+      awaitingNextValue=true;
       displayNum='';
-      awaitingNextValue=false;
+    }else{
+      const result = calculationOfValues[sign](firstValue,Number(displayNum));
+      setDisplayValue(result);
+      firstValue=Number(result);
+      setSign(operator=== '='? '':operator);
+      awaitingNextValue = (operator !== '=');
+      displayNum='';
     }
   }
+
   function resetCalculator(){
     setDisplayValue("0");
     displayNum = '';
+    setSign('');
   }
   
   return (
     <>
-      <div class="calculator">
+      <div className="calculator">
         {/* <!-- Display --> */}
-        <div class="calculator-display">
-            <h1>{displayValue}</h1><span>{operatorSign}</span>
+        <div className="calculator-display">
+            <h1>{displayValue}</h1><span>{sign}</span>
         </div>
         {/* <!-- buttons --> */}
-        <div class="calculator-buttons">
-            <button class="operator" value="+" onClick={addValues}>+</button>
-            <button class="operator" value="-">-</button>
-            <button class="operator" value="*">×</button>
-            <button class="operator" value="/">÷</button>
-            <button value="7" onClick={onInsertValue}>7</button>
-            <button value="8" onClick={onInsertValue}>8</button>
-            <button value="9" onClick={onInsertValue}>9</button>
-            <button value="4" onClick={onInsertValue}>4</button>
-            <button value="5" onClick={onInsertValue}>5</button>
-            <button value="6" onClick={onInsertValue}>6</button>
-            <button value="1" onClick={onInsertValue}>1</button>
-            <button value="2" onClick={onInsertValue}>2</button>
-            <button value="3" onClick={onInsertValue}>3</button>
-            <button class="decimal" value="." onClick={onInsertDecimal}>.</button>
-            <button value="0" onClick={onInsertZero}>0</button>
-            <button class="clear" onClick={resetCalculator}>C</button>
-            <button class="equal-sign operator" value="=">=</button>
+        <div className="calculator-buttons">
+            <BtnNumber className="operator" valueOfBtn="+" onClick={calculationWithOperator}/>
+            <BtnNumber className="operator" valueOfBtn="-" onClick={calculationWithOperator}/>
+            <BtnNumber className="operator" valueOfBtn="×" onClick={calculationWithOperator}/>
+            <BtnNumber className="operator" valueOfBtn= "/" onClick={calculationWithOperator}/>
+            
+            <BtnNumber valueOfBtn="7" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="8" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="9" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="4" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="5" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="6" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="1" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="2" onClick={onInsertValue}/>
+            <BtnNumber valueOfBtn="3" onClick={onInsertValue}/>
+            <BtnNumber className="decimal" valueOfBtn="." onClick={onInsertDecimal}/>
+            <BtnNumber valueOfBtn="0" onClick={onInsertValue}/>
+            <BtnNumber className="clear" valueOfBtn='C' onClick={resetCalculator}/>
+            <BtnNumber className="equal-sign operator" valueOfBtn="=" onClick={calculationWithOperator}/>
         </div>
     </div>
     </>
