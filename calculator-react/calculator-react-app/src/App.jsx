@@ -18,19 +18,15 @@ function App() {
   const [sign, setSign]=useState('');
   //insert value
   function onInsertValue (event){
-    if(event.target.value === '0'&& displayValue === '0'){
+    const clickButtonValue= event.target.value;
+    if(clickButtonValue === '0'&& displayValue === '0'){
       return;
     }
-    displayNum=displayNum+`${event.target.value}`;
+    displayNum=displayNum+`${clickButtonValue}`;
     setDisplayValue(displayNum);
   }
 
-  function onInsertZero(event){
-    if(displayValue !== '0'){
-      displayNum=displayNum+`${event.target.value}`;
-    setDisplayValue(displayNum);
-    }
-  }
+ 
 
   function onInsertDecimal(){
     if(!displayNum.includes('.')){
