@@ -10,24 +10,21 @@ function App() {
     expectedReturn: 6,
     duration: 5,
 });
+const [initialInvestment, setInitialInvestment] =useState(10000);
+const [annualInvestment, setAnnualInvestment] =useState(1200);
+const [expectedReturn, setExpectedReturn] =useState(6);
+const [duration, setDuration] =useState(5);
 
 //valid
-const inputIsValid = userInput['duration'] >= 1;
+const inputIsValid = duration >= 1;
 
-function handleChange(inputIdentifier, newValue){
-    setUserInput(prevUserInput=>{
-        return {
-            ...prevUserInput,
-            [inputIdentifier]: +newValue
-        };
-    });
-}
+
   return (
   <>
     <Header id="header"/>
-    <UserInput onChanges={handleChange} inputOfUser={userInput} />
+    <UserInput initialInvestment={initialInvestment} annualInvestment={annualInvestment} expectedReturn={expectedReturn} duration={duration} setInitialInvestment={setInitialInvestment} setAnnualInvestment={setAnnualInvestment} setExpectedReturn={setExpectedReturn} setDuration={setDuration} />
     {!inputIsValid && <h3 className='center'>Please enter a duration greater than zero.</h3>}
-    {inputIsValid && <Results id="result" input={userInput} />}
+    {inputIsValid && <Results id="result" initialInvestment={initialInvestment} annualInvestment={annualInvestment} expectedReturn={expectedReturn} duration={duration} />}
   </>
   )
 }
