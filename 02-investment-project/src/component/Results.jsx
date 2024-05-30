@@ -1,11 +1,11 @@
 import { calculateInvestmentResults,formatter } from '../util/investment.js';
-export default function Results({id,initialInvestment, annualInvestment, expectedReturn, duration}){
+export default function Results({id,objectOfData}){
     
     const resultData =calculateInvestmentResults({
-        ['initialInvestment']:initialInvestment ,
-        ['annualInvestment']: annualInvestment, 
-        ['expectedReturn']: expectedReturn, 
-        ['duration']: duration  
+        ['initialInvestment']:objectOfData.initial.value ,
+        ['annualInvestment']: objectOfData.annual.value, 
+        ['expectedReturn']: objectOfData.returns.value, 
+        ['duration']: objectOfData.duration.value  
     });
    
     console.log(resultData)
@@ -21,7 +21,7 @@ export default function Results({id,initialInvestment, annualInvestment, expecte
         </thead>
         <tbody>
             {resultData.map(yearData =>{
-                const totalInterest = yearData['valueEndOfYear']-yearData['annualInvestment'] *yearData['year']-initialInvestment;
+                const totalInterest = yearData['valueEndOfYear']-yearData['annualInvestment'] *yearData['year']-objectOfData.initial.value;
 
                 const totalAmountInvestment = yearData['valueEndOfYear']- totalInterest;
 
