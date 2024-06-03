@@ -11,7 +11,7 @@ export default function UserInput({ objectOfData }){
             <p>
                 <label>Initial Investment</label>
                 <input type="number" value={objectOfData.initial.value} onChange={(e)=>
-                     objectOfData.initial.setFunction(Number(e.target.value))} required />
+                     objectOfData['initial'].setFunction(Number(e.target.value))} required />
             </p>
             <p>
                 <label>Annual Investment</label>
@@ -25,7 +25,7 @@ export default function UserInput({ objectOfData }){
                 <label>Expected Return</label>
                 <input type="number" value={objectOfData.returns.value} 
                 onChange={(e)=>
-                     objectOfData.returns.setFunction(Number(e.target.value))} required />
+                     objectOfData['returns'].setFunction(Number(e.target.value))} required />
             </p>
             <p>
                 <label>Duration</label>
