@@ -320,4 +320,48 @@ export default function Workout({ title, description, time, onComplete }) {
     </article>
   );
 }
+import Input from './Input';
+import {useRef} from 'react'
+
+export const userData = {
+  name: '',
+  email: '',
+};
+
+export function App() {
+    const name = useRef();
+    const email = useRef();
+  function handleSaveData() {
+    const enteredName = name.current.value;
+    const enteredEmail = email.current.value;
+    userData.name = enteredName;
+    userData.email = enteredEmail;
+
+    console.log(userData);
+  }
+
+  return (
+    <div id="app">
+      <Input type="text" label="Your Name" ref={name} />
+      <Input type="email" label="Your E-Mail" ref={email}/>
+      <p id="actions">
+        <button onClick={handleSaveData}>Save Data</button>
+      </p>
+    </div>
+  );
+}
+import { forwardRef } from 'react';
+const Input = forwardRef(function Input({label, ...props},ref) {
+  // Todo: Accept forwarded ref and "connect" it to the <input> element
+  return (
+    <p className="control">
+      <label>{label}</label>
+      {/* Todo: "Forward" remaining props to <input> element */}
+      <input ref={ref} {...props} />
+    </p>
+  );
+})
+export default Input;
+
+
 
