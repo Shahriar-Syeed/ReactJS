@@ -1,7 +1,14 @@
 import { useState, useRef } from "react";
 import ResultModal from "./ResultModal.jsx";
+import { useState, useRef } from "react";
+import ResultModal from "./ResultModal.jsx";
 // let timer; // all across all component have thrown away setTimeout function use useRef();
 
+export default function TimerChallenge({ title, targetTime }) {
+  const timer = useRef();
+  const dialog = useRef();
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [timerExpired, setTimerExpired] = useState(false);
 export default function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
   const dialog = useRef();
