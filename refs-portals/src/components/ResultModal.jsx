@@ -11,26 +11,36 @@
 //     )
 // }
 import { forwardRef, useImperativeHandle, useRef } from "react";
+import {createPortal} from 'react-dom';
+
 const ResultModal = forwardRef(function ResultModal(
-  { result, targetTime },
+  // { result, targetTime, remainingTime },
+  { targetTime, remainingTime, onReset },
   ref
 ) {
+  const dialogModal = useRef();
 
-  const dialogModal= useRef();
+  const userLost = remainingTime <= 0;
+  const formattedRemainingTime = (remainingTime / 1000).toFixed(2);
+  const score = Math.round((1 - remainingTime / (targetTime * 1000)) * 100);
 
-  useImperativeHandle(ref, ()=>{
-    return{
-      open(){
+  useImperativeHandle(ref, () => {
+    return {
+      open() {
         dialogModal.current.showModal();
-      }
+      },
     };
   });
-  return (
-    <dialog className="result-modal" 
-    // ref={ref}
-    ref={dialogModal}
+  return createPortal (
+    <dialog
+      className="result-modal"
+      // ref={ref}
+      ref={dialogModal}
+      onClose={onReset}
     >
-      <h2>You {result}! </h2>
+      {/* <h2>You {result}! </h2> */}
+      {userLost && <h2>You Lost! </h2>}
+      {!userLost && <h2>Your Score: {score} ! </h2>}
       <p>
         The target time was{" "}
         <strong>
@@ -38,12 +48,14 @@ const ResultModal = forwardRef(function ResultModal(
         </strong>
       </p>
       <p>
-        You stopped the timer with <strong> X seconds left.</strong>
+        You stopped the timer with{" "}
+        <strong> {formattedRemainingTime} seconds left.</strong>
       </p>
       <form method="dialog">
-        <button>Close</button>
+        <button onSubmit={onReset}>Close</button>
       </form>
-    </dialog>
+    </dialog>,
+    document.getElementById("modal")
   );
 });
 export default ResultModal;
