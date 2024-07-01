@@ -22,7 +22,8 @@ export default function NewProject({ onAdd }) {
       // show error message
       console.log("Validation failed");
       console.log(modalRef.current);
-      modalRef.current.showModal();
+      modalRef.current.open();
+      return;
     }
 
     onAdd({
