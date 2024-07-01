@@ -14,6 +14,9 @@ export default function SelectedProject({
   });
 
   console.log("project from selected project", project);
+  console.log("task sh", tasks);
+
+
 
   return (
     <div className="w-[35rem] mt-16">
@@ -35,7 +38,6 @@ export default function SelectedProject({
         </p>
       </header>
       <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
-      <div>{tasks}</div>
     </div>
   );
 }
