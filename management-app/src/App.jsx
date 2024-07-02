@@ -27,7 +27,18 @@ function App() {
       };
     });
   }
-  function handleDeleteTask() {}
+  function handleDeleteTask(id) {
+    setProjectsState((prevState) => {
+      console.log("rterg",prevState.tasks);
+      console.log("idididid",id);
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter(
+          (task) => task.id !== id
+        ),
+      };
+    });
+  }
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -80,6 +91,9 @@ function App() {
         projects: prevState.projects.filter(
           (project) => project.id !== prevState.selectedProjectId
         ),
+        tasks: prevState.tasks.filter(
+          (task)=>task.projectId !== prevState.selectedProjectId //extra
+        ),
       };
     });
   }
@@ -112,6 +126,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {content}
     </main>

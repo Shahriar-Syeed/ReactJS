@@ -13,10 +13,7 @@ export default function SelectedProject({
     day: "numeric",
   });
 
-  console.log("project from selected project", project);
-  console.log("task sh", tasks);
-
-
+  const projectTasks = tasks.filter((task)=>task.projectId === project.id);
 
   return (
     <div className="w-[35rem] mt-16">
@@ -37,7 +34,7 @@ export default function SelectedProject({
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={projectTasks} />
     </div>
   );
 }
