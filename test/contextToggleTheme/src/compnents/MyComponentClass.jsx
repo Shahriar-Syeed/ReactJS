@@ -5,6 +5,12 @@ class MyComponent extends React.Component{
         count: 0,
         date: new Date(),
       };
+    }
+
+    function addClick() {
+      this.setState((count)=>{
+          count = count+1;
+      });
 
     render(){
           const { date } = this.state;
@@ -13,7 +19,8 @@ class MyComponent extends React.Component{
             <div>
                 <p>Time: {date.toLocaleTimeString()}</p>
                 <p>
-                    <button type='button'>Click</button>
+                    <button type='button'
+                    onClick={this.addClick}>Click</button>
                 </p>
             </div>
         );
