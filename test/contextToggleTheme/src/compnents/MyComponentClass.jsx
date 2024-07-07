@@ -11,11 +11,22 @@ class MyComponent extends React.Component{
         document.title=`Clicked ${count} times `;
       }
       
+      componentDidUpdate(){
+        const {count} =this.state;
+        document.title=`Clicked ${count} times `;
+      }
+      
        addClick=()=> {
       this.setState(({count})=>({
           count = count+1,
       }));
     };
+
+    tick = () =>{
+        this.setState({
+            date: new Date(),
+        })
+    }
 
       render() {
           const { date } = this.state;
