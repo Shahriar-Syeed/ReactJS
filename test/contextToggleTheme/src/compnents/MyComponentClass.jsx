@@ -5,18 +5,23 @@ class MyComponent extends React.Component{
         count: 0,
         date: new Date(),
       };
-    }
 
-    function addClick() {
-      this.setState((count)=>{
-          count = count+1;
-      });
+      componentDidMount(){
+        const {count} =this.state;
+        document.title=`Clicked ${count} times `;
+      }
+      
+       addClick=()=> {
+      this.setState(({count})=>({
+          count = count+1,
+      }));
+    };
 
-    render(){
+      render() {
           const { date } = this.state;
 
-        return (
-            <div>
+          return (
+              <div>
                 <p>Time: {date.toLocaleTimeString()}</p>
                 <p>
                     <button type='button'
@@ -25,5 +30,6 @@ class MyComponent extends React.Component{
             </div>
         );
     }
+
 }
 export default MyComponent;
