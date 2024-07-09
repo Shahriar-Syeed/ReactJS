@@ -82,7 +82,14 @@ function App() {
 
   return (
     <>
-      {/* <Modal ref={modal}> */}
+      {/* <Modal ref={modal}> instead of useRef use useState and useEffect*/}
+      {/* if you want to use time out function in DeleteConfirmation component
+      <Modal open={isModalOpen} onClose={handleStopRemovePlace}>
+        {isModalOpen && <DeleteConfirmation
+          onCancel={handleStopRemovePlace}
+          onConfirm={handleRemovePlace}
+        />}
+      </Modal> */}
       <Modal open={isModalOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
