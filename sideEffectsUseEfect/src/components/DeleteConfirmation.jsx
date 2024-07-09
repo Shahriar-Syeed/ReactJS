@@ -11,7 +11,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
       console.log("Cleaning up timer")
       clearTimeout(timer);
     }
-  },[onConfirm]);
+  },[onConfirm]); //might create infinite loop for this dependancy  function call this component 
   
   return (
     <div id="delete-confirmation">
