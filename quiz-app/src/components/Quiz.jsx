@@ -4,7 +4,6 @@ import QUESTIONS from "../questions.js";
 import QuestionTimer from "../QuestionTimer.jsx";
 import quizComplete from "../assets/quiz-complete.png";
 
-
 export default function Quiz() {
   // const [activeQuestionIndex, setActiveQuestionIndex] = useState(0); // redundant due to can be find the indx from the length of array answers
   const [userAnswers, setUserAnswers] = useState([]);
@@ -14,12 +13,17 @@ export default function Quiz() {
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
   console.log("quizIsComplete", quizIsComplete);
 
-  const handleSelectAnswer = useCallback (function handleSelectAnswer(selectedAnswer) {
+  const handleSelectAnswer = useCallback(function handleSelectAnswer(
+    selectedAnswer
+  ) {
     setUserAnswers((prevAnswer) => [...prevAnswer, selectedAnswer]);
     // console.log(userAnswers);
-  },[])
-  const handleSkipAnswer = useCallback(()=>handleSelectAnswer(null),[handleSelectAnswer]);
-      
+  },
+  []);
+  const handleSkipAnswer = useCallback(
+    () => handleSelectAnswer(null),
+    [handleSelectAnswer]
+  );
 
   if (quizIsComplete) {
     return (
@@ -36,7 +40,11 @@ export default function Quiz() {
   return (
     <div id="quiz">
       <div id="question">
-        <QuestionTimer timeout={4000} onTimeout={handleSkipAnswer}/> 
+        <QuestionTimer
+          key={activeQuestionIndex} //to recreate and again progressbar counting
+          timeout={4000}
+          onTimeout={handleSkipAnswer}
+        />
         <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
         <ul id="answers">
           {shuffledAnswers.map((answer) => (
