@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { ProjectContext } from "./store/project-context.jsx";
+
 import ProjectSidebar from "./components/ProjectSidebar.jsx";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
@@ -108,7 +110,6 @@ function App() {
     <SelectedProject
       project={selectedProject}
       onDelete={handleDeleteProject}
-      onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
       tasks={projectsState.tasks}
     />
@@ -121,15 +122,17 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
   return (
-    <main className="h-screen my-8 flex gap-8">
-      <ProjectSidebar
-        onStartAddProject={handleStartAddProject}
-        projects={projectsState.projects}
-        onSelectProject={handleSelectProject}
-        selectedProjectId={projectsState.selectedProjectId}
-      />
-      {content}
-    </main>
+    <ProjectContext.Provider value={{handleAddTask, handleDeleteTask}}>
+      <main className="h-screen my-8 flex gap-8">
+        <ProjectSidebar
+          onStartAddProject={handleStartAddProject}
+          projects={projectsState.projects}
+          onSelectProject={handleSelectProject}
+          selectedProjectId={projectsState.selectedProjectId}
+        />
+        {content}
+      </main>
+    </ProjectContext.Provider>
   );
 }
 
