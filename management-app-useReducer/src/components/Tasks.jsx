@@ -5,7 +5,6 @@ import NewTask from "./NewTask.jsx";
 
 export default function Tasks({tasks, onDelete}){
     const {handleDeleteTask} = useContext(ProjectContext); 
-   console.log(tasks)
 
     return (
         <section>

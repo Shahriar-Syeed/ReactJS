@@ -1,8 +1,11 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { ProjectContext } from "../store/project-context.jsx";
+
 import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
-export default function NewProject({ onAdd, onCancel }) {
+export default function NewProject() {
+  const {handleAddProject, handleCancelAddProject} = useContext(ProjectContext);
   const modalRef = useRef();
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -20,13 +23,12 @@ export default function NewProject({ onAdd, onCancel }) {
       enteredDueDate.trim() === ""
     ) {
       // show error message
-      console.log("Validation failed");
-      console.log(modalRef.current);
+
       modalRef.current.open();
       return;
     }
 
-    onAdd({
+    handleAddProject({
       title: enteredTitle,
       description: enteredDescription,
       dueDate: enteredDueDate,
@@ -43,7 +45,7 @@ export default function NewProject({ onAdd, onCancel }) {
       <div className="w-[35rem] pt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
-            <button className="text-stone-800 hover:text-stone-950 " onClick={onCancel}>
+            <button className="text-stone-800 hover:text-stone-950 " onClick={handleCancelAddProject}>
               Cancel
             </button>
           </li>

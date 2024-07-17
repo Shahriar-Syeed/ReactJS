@@ -4,12 +4,11 @@ import ButtonAdd from "./ButtonAdd";
 
 const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
   const dialogRef = useRef();
-  console.log(dialogRef);
+
   useImperativeHandle(ref, () => {
     return {
       open() {
-        console.log("Opening modal");
-        console.log(dialogRef.current);
+       
         dialogRef.current.showModal();
       }
     };
