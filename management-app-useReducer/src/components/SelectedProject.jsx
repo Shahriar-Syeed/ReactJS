@@ -5,7 +5,7 @@ import { ProjectContext } from "../store/project-context.jsx";
 import Tasks from "./Tasks.jsx";
 
 export default function SelectedProject(){
-  const {selectedProject, handleDeleteProject, projectsState} = useContext(ProjectContext);
+  const {selectedProject, handleDeleteProject, projectSelectState} = useContext(ProjectContext);
 
   const formattedDate = new Date(selectedProject.dueDate).toLocaleDateString("en-US", {
     year: "2-digit",
@@ -13,7 +13,7 @@ export default function SelectedProject(){
     day: "numeric",
   });
 
-  const projectTasks = projectsState.tasks.filter((task)=>task.projectId === selectedProject.id);
+  const projectTasks = projectSelectState.tasks.filter((task)=>task.projectId === selectedProject.id);
 
   return (
     <div className="w-[35rem] mt-16">

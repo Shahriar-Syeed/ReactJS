@@ -8,14 +8,14 @@ import { ProjectContext } from "../store/project-context.jsx";
 
 
 export default function Content (){
-    const {projectsState} = useContext(ProjectContext);
+    const {projectSelectState} = useContext(ProjectContext);
     let content= <SelectedProject/>;
 
-      if (projectsState.selectedProjectId === null) {
+      if (projectSelectState.selectedProjectId === null) {
         
          content = <NewProject/>;
         
-      } else if (projectsState.selectedProjectId === undefined) {
+      } else if (projectSelectState.selectedProjectId === undefined) {
         content = <NoProjectSelected />;
       }
 
