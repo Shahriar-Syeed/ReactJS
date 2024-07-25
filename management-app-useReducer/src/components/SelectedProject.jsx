@@ -1,19 +1,25 @@
-import { useContext} from "react";
+import { useContext } from "react";
 
 import { ProjectContext } from "../store/project-context.jsx";
 
 import Tasks from "./Tasks.jsx";
 
-export default function SelectedProject(){
-  const {selectedProject, handleDeleteProject, projectSelectState} = useContext(ProjectContext);
+export default function SelectedProject() {
+  const { selectedProject, handleDeleteProject, projectSelectState } =
+    useContext(ProjectContext);
 
-  const formattedDate = new Date(selectedProject.dueDate).toLocaleDateString("en-US", {
-    year: "2-digit",
-    month: "short",
-    day: "numeric",
-  });
+  const formattedDate = new Date(selectedProject.dueDate).toLocaleDateString(
+    "en-US",
+    {
+      year: "2-digit",
+      month: "short",
+      day: "numeric",
+    }
+  );
 
-  const projectTasks = projectSelectState.tasks.filter((task)=>task.projectId === selectedProject.id);
+  const projectTasks = projectSelectState.tasks.filter(
+    (task) => task.projectId === selectedProject.id
+  );
 
   return (
     <div className="w-[35rem] mt-16">
@@ -34,7 +40,7 @@ export default function SelectedProject(){
           {selectedProject.description}
         </p>
       </header>
-      <Tasks tasks={projectTasks}/>
+      <Tasks tasks={projectTasks} />
     </div>
   );
 }
