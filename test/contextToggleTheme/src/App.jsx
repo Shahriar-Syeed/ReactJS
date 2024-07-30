@@ -53,6 +53,7 @@
 // export default App;
 
 import React from 'react';
+import MyComponentClass from './compnents/MyComponentClass.jsx';
 
 export default class App extends React.Component {
   
@@ -60,6 +61,7 @@ export default class App extends React.Component {
     return(
       <div  className='app'>
         <div>We shall learn useEffect() today</div>
+        <MyComponentClass/>
       </div>
     );
   }
