@@ -11,6 +11,19 @@ export async function fetchAvailablePlaces(){
     return resData.places;
 
 }
+export async function fetchUserPlaces(){
+    const response = await fetch('http://localhost:3000/user-places');
+    const resData = await response.json();
+
+    if(!response.ok){ //true 200, 300, false 400, 500 status code
+      // const error = new Error('Failed to fetch places');
+      // throw error;
+      throw new Error('Failed to fetch user places');
+    }
+
+    return resData.places;
+
+}
 
 export async function updateUserPlaces(places){
     const response = await fetch('http://localhost:3000/user-places', {
