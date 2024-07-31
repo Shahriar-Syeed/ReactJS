@@ -3,6 +3,8 @@ import Places from './Places.jsx';
 import Error from './Error.jsx';
 import {sortPlacesByDistance} from '../loc.js';
 
+import { fetchAvailablePlaces } from '../http.js';
+
 const places =localStorage.getItem('places'); //syncronizly
 
 export default  function AvailablePlaces({ onSelectPlace }) {
@@ -17,18 +19,20 @@ export default  function AvailablePlaces({ onSelectPlace }) {
 
         try{
 
-          const response = await fetch('http://localhost:3000/places');
-          const resData = await response.json();
+          // const response = await fetch('http://localhost:3000/places');
+          // const resData = await response.json();
   
-          if(!response.ok){ //true 200, 300, false 400, 500 status code
-            // const error = new Error('Failed to fetch places');
-            // throw error;
-            throw new Error('Failed to fetch places');
-          }
+          // if(!response.ok){ //true 200, 300, false 400, 500 status code
+          //   // const error = new Error('Failed to fetch places');
+          //   // throw error;
+          //   throw new Error('Failed to fetch places');
+          // }
+          const places = await fetchAvailablePlaces();
 
           navigator.geolocation.getCurrentPosition((position)=>{
 
-            const sortedPlaces = sortPlacesByDistance(resData.places, position.coords.latitude, position.coords.longitude);
+            // const sortedPlaces = sortPlacesByDistance(resData.places, position.coords.latitude, position.coords.longitude);
+            const sortedPlaces = sortPlacesByDistance(places, position.coords.latitude, position.coords.longitude);
 
             setAvailablePlaces(sortedPlaces);
             setIsFetching(false);
