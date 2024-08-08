@@ -19,7 +19,8 @@ export default function Login() {
     const enteredEmail = mail.current.value;
     const enteredPassword = pass.current.value;
     console.log(enteredEmail, enteredPassword);
- 
+    mail.current.value = '';
+    pass.current.value = ''; 
   }
   function handleEnteredValue(id, input){
     setEnteredValue({
