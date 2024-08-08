@@ -24,7 +24,12 @@ export default function StateLogin() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if(emailIsInvalid){
+        return;
+    }
+    setDidEdit(false);
 
+    console.log("html request ...");
     console.log("enteredValue", enteredValue.email, enteredValue.password);
     // const enteredEmail = mail.current.value;
     // const enteredPassword = pass.current.value;
@@ -78,7 +83,7 @@ export default function StateLogin() {
             value={enteredValue.email}
           />
           {/* <input id="email" type="email" name="email" ref={mail} /> */}
-          <div className="control-error">
+          <div className={emailIsInvalid && "control-error"}>
             {emailIsInvalid && <p>Please enter a valid email address.</p>}
           </div>
         </div>
