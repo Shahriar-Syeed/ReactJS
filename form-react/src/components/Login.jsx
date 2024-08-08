@@ -6,14 +6,13 @@ export default function Login() {
   // const [enteredValue, setEnteredValue]= useState({
   //   email : '',
   //   password : '',
-  // }); 
-  const [emailIsInvalid, setEmailIsInvalid]=useState(false);
+  // });
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
 
   const mail = useRef();
   const pass = useRef();
- 
 
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
 
     // console.log('enteredValue', enteredValue.email, enteredValue.password);
@@ -21,15 +20,15 @@ export default function Login() {
     const enteredPassword = pass.current.value;
     console.log(enteredEmail, enteredPassword);
 
-    const emailIsValid = enteredEmail.includes('@');
-    if(!emailIsValid){
+    const emailIsValid = enteredEmail.includes("@");
+    if (!emailIsValid) {
       setEmailIsInvalid(true);
       return;
     }
     setEmailIsInvalid(false);
-    console.log('sending http request. . . ')
+    console.log("sending http request. . . ");
     // mail.current.value = '';
-    // pass.current.value = ''; 
+    // pass.current.value = '';
   }
   // function handleEnteredValue(id, input){
   //   setEnteredValue({
@@ -42,7 +41,7 @@ export default function Login() {
   //  setEnterEmail(event.target.value);
   // }
   // function handlePassword(event){
-  //   setEnterPassword(event.target.value);   
+  //   setEnterPassword(event.target.value);
   // }
   return (
     <form onSubmit={handleSubmit}>
@@ -67,7 +66,7 @@ export default function Login() {
 
       <p className="form-actions">
         <button className="button button-flat">Reset</button>
-        <button  className="button" >Login</button>
+        <button className="button">Login</button>
       </p>
     </form>
   );

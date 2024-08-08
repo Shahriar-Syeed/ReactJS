@@ -24,8 +24,8 @@ export default function StateLogin() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if(emailIsInvalid){
-        return;
+    if (emailIsInvalid) {
+      return;
     }
     setDidEdit(false);
 

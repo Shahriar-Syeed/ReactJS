@@ -1,12 +1,11 @@
 export default function Signup() {
-
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
 
     const fd = new FormData(event.target);
     // const enteredEmail = fd.get('email');
     // console.log(fd, fd.get('email'));
-    const acquisitionChannel = fd.getAll('acquisition');
+    const acquisitionChannel = fd.getAll("acquisition");
     const data = Object.fromEntries(fd.entries());
     data.acquisition = acquisitionChannel;
     console.log(data, acquisitionChannel);
@@ -26,7 +25,13 @@ export default function Signup() {
       <div className="control-row">
         <div className="control">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" name="password" required minLength={6} />
+          <input
+            id="password"
+            type="password"
+            name="password"
+            required
+            minLength={6}
+          />
         </div>
 
         <div className="control">
@@ -51,7 +56,7 @@ export default function Signup() {
 
         <div className="control">
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" name="last-name" required/>
+          <input type="text" id="last-name" name="last-name" required />
         </div>
       </div>
 
