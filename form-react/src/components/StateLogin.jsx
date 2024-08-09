@@ -18,14 +18,15 @@ export default function StateLogin() {
     password: false,
   });
 
-  //   const mail = useRef();
-  //   const pass = useRef();
+ 
 
   const emailIsInvalid = didEdit.email && !enteredValue.email.includes("@");
+  const passwordIsInvalid =
+    didEdit.password && (enteredValue.password.trim().length < 6);
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!emailIsInvalid) {
+    if (!emailIsInvalid || !passwordIsInvalid) {
       return;
     }
     setDidEdit(false);
@@ -74,10 +75,13 @@ export default function StateLogin() {
         <Input
           label="Email"
           id="email"
-          error={
-            emailIsInvalid &&  'Please enter a valid email address.'
-          }
+          type='email'
+          name='email'
+          onBlur={() => handleInputBlur("email")}
+          onChange={(event) => handleEnteredValue("email", event.target.value)}
+          error={emailIsInvalid && "Please enter a valid email address."}
         />
+
         {/* <div className="control no-margin">
           <label htmlFor="email">Email</label>
           <input
@@ -90,13 +94,26 @@ export default function StateLogin() {
             }
             value={enteredValue.email}
           />
-          <input id="email" type="email" name="email" ref={mail} />
-          <div className="control-error">
             {emailIsInvalid && <p>Please enter a valid email address.</p>}
           </div>
         </div> */}
 
-        <div className="control no-margin">
+        <Input
+          label="Password"
+          id="password"
+          type='password'
+          name='password'
+          onBlur={() => handleInputBlur("password")}
+          onChange={(event) =>
+            handleEnteredValue("password", event.target.value)
+          }
+          value={enteredValue.password}
+          error={
+            passwordIsInvalid &&  'Please enter a valid password.'
+          }
+        />
+
+        {/* <div className="control no-margin">
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -107,8 +124,7 @@ export default function StateLogin() {
             }
             value={enteredValue.password}
           />
-          {/* <input id="password" type="password" name="password" ref={pass} /> */}
-        </div>
+        </div> */}
       </div>
 
       <p className="form-actions">
