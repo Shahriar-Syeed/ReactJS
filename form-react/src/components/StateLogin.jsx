@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Input from "./Input";
 
 export default function StateLogin() {
   //   const [enterEmail, setEnterEmail]= useState('');
@@ -24,7 +25,7 @@ export default function StateLogin() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (emailIsInvalid) {
+    if (!emailIsInvalid) {
       return;
     }
     setDidEdit(false);
@@ -70,7 +71,14 @@ export default function StateLogin() {
       <h2>Login</h2>
 
       <div className="control-row">
-        <div className="control no-margin">
+        <Input
+          label="Email"
+          id="email"
+          error={
+            emailIsInvalid &&  'Please enter a valid email address.'
+          }
+        />
+        {/* <div className="control no-margin">
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -82,11 +90,11 @@ export default function StateLogin() {
             }
             value={enteredValue.email}
           />
-          {/* <input id="email" type="email" name="email" ref={mail} /> */}
-          <div className={emailIsInvalid && "control-error"}>
+          <input id="email" type="email" name="email" ref={mail} />
+          <div className="control-error">
             {emailIsInvalid && <p>Please enter a valid email address.</p>}
           </div>
-        </div>
+        </div> */}
 
         <div className="control no-margin">
           <label htmlFor="password">Password</label>
