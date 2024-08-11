@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
+import {isEmail, isNotEmpty, hasMinLength} from '../util/validation'
 
 export default function StateLogin() {
   //   const [enterEmail, setEnterEmail]= useState('');
@@ -20,22 +21,21 @@ export default function StateLogin() {
 
  
 
-  const emailIsInvalid = didEdit.email && !enteredValue.email.includes("@");
+  // const emailIsInvalid = didEdit.email && !enteredValue.email.includes("@");
+  const emailIsInvalid = didEdit.email && (!isEmail(enteredValue.email) || !isNotEmpty(enteredValue.email));
   const passwordIsInvalid =
-    didEdit.password && (enteredValue.password.trim().length < 6);
+    didEdit.password && !hasMinLength(enteredValue.password, 6);
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!emailIsInvalid || !passwordIsInvalid) {
+    if (emailIsInvalid || passwordIsInvalid) {
       return;
     }
     setDidEdit(false);
 
     console.log("html request ...");
     console.log("enteredValue", enteredValue.email, enteredValue.password);
-    // const enteredEmail = mail.current.value;
-    // const enteredPassword = pass.current.value;
-    // console.log(enteredEmail, enteredPassword);
+    
     setEnteredValue({
       //   email: {
       //     value:'',
@@ -61,12 +61,7 @@ export default function StateLogin() {
       [identifier]: true,
     }));
   }
-  //   function handleEmail(event){
-  //    setEnterEmail(event.target.value);
-  //   }
-  //   function handlePassword(event){
-  //     setEnterPassword(event.target.value);
-  //   }
+  
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
