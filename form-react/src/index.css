@@ -36,6 +36,22 @@ header h1 {
   letter-spacing: 0.2rem;
   color: #2f4444;
 }
+header a{
+  color: #147b73;
+  text-decoration: none;
+  font-size: 2rem;
+  background-image: linear-gradient(90deg,#2f4444,#9f4944);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.4s ease;
+
+}
+header a:hover{
+  background-size: 100% 2px;
+}
+
+
 
 form {
   width: 90%;
