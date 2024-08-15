@@ -33,7 +33,7 @@ function cartReducer(state, action) {
       (item) => item.id === action.id //action.item is receiving 
     );
     const existingCartItem = state.items[existingCartItemIndex];
-
+    
     const updatedItems = [...state.items];
 
     if(existingCartItem.quantity === 1){
@@ -43,9 +43,9 @@ function cartReducer(state, action) {
         ...existingCartItem,
         quantity: existingCartItem.quantity - 1,
       };
-      updatedItems[existingCartItem]= updatedItem;
+      updatedItems[existingCartItemIndex]= updatedItem;// updatedItems[existingCartItem]= updatedItem;this is wrong
     }
-    return {...state, item: updatedItems}
+    return {...state, items: updatedItems};// previously wrong written item: instead of items:
   }
   return state;
 }
