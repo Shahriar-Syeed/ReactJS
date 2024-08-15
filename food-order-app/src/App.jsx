@@ -4,14 +4,12 @@ import { CartContextProvider } from "./store/CartContext.jsx";
 
 function App() {
   return (
-    <>
     <CartContextProvider>
       <Header/>
       <main>
         <Meals/>
       </main>
     </CartContextProvider>
-    </>
   );
 }
 

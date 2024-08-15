@@ -9,10 +9,10 @@ function cartReducer(state, action) {
     // ... update the state to add a meal item
     // state.item.push(action.item); //mutate  state not usable and rather than ten time items quantity should be increase to 10 item should be added one time.
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id //action.item is receiving  
+      (item) => item.id === action.item.id //action.item is receiving  
 
     );// check the item is existing in the item array
-    console.log(existingCartItemIndex)
+    // console.log(existingCartItemIndex)
     const updatedItems = [...state.items];
     if(existingCartItemIndex > -1){ //if not found it would return -1
       const existingItem = state.items[existingCartItemIndex];
@@ -20,7 +20,7 @@ function cartReducer(state, action) {
         ...existingItem,// ...state.items[existingCartItemIndex],
         quantity: existingItem.quantity + 1,
       };
-      console.log('existingItem', existingItem, 'updatedItem', updatedItem)
+      // console.log('existingItem', existingItem, 'updatedItem', updatedItem)
       updatedItems[existingCartItemIndex] = updatedItem;
     } else{
       updatedItems.push({...action.item, quantity:1,});
