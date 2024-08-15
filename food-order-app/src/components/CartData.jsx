@@ -43,7 +43,7 @@ export default function CartData() {
         <Button textOnly onClick={handleCloseCart}>
           Close
         </Button>
-        <Button onClick={userProgressCtx.showCheckout}>Go to Checkout</Button>
+        {cartCtx.items.length>0 && <Button onClick={userProgressCtx.showCheckout}>Go to Checkout</Button>}
       </div>
     </Modal>
   );
