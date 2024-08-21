@@ -4,6 +4,7 @@ import CartContext from "../store/CartContext.jsx";
 import UserProgressContext from "../store/UserProgressContext.jsx";
 import CartData from "./CartData.jsx";
 
+
 export default function Cart() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
@@ -23,6 +24,7 @@ export default function Cart() {
       </Button>
     </nav>
     <CartData/>
+    
     </>
   );
 }
