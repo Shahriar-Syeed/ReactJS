@@ -22,7 +22,7 @@ export default function Meals() {
   //   fetchMeals();
   // }, []);
   if (isLoading){
-    return (<p className="center">Fetching meals...</p>);
+    return (<p style={{textAlign:'center',}}>Fetching meals...</p>);
   }
   if(error){
     return (<Error title="Failed to fetch meal" message={error} />);
