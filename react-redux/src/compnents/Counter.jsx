@@ -1,20 +1,30 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
  const Counter = () => {
+  const dispatch = useDispatch();
   const counterValue = useSelector(state => state.count);//automatically subscribe and receive latest value
+
  console.log(counterValue);
-  const  togglerCounterHandler = () => {};
+
+ const incrementHandler = () => {
+  dispatch({type: 'increment'});
+};
+
+const decrementHandler = () => {
+   dispatch({type: 'decrement'});
+ };
+
+  const  togglerCounterHandler = () => { };
   return (
     <div className="card">
-      <h4 style={{textAlign:'center',}}>Count is {counterValue}</h4>
-        <button >
+      <h2 style={{textAlign:'center', color: "crimson"}}>Count is {counterValue}</h2>
+        <button style={{padding: '4px 8px', marginInline: '4px',}} onClick={incrementHandler}>
           +
         </button>
-
-        <button onClick={togglerCounterHandler}>Toggle</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button style={{padding: '4px 8px', marginInline: '4px',}} onClick={decrementHandler}>
+          -
+        </button>
+        <button onClick={togglerCounterHandler} style={{marginInline: '4px',}}>Toggle</button>
       </div>
   );
 }
