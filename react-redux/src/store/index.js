@@ -4,6 +4,7 @@ const initialState = {count:0,showCounter : true,};
 
 const counterReducer = (state=initialState, action)=>{
   if(action.type === 'increment'){
+    // state.count++; //never mutate existing state, always return and override the state with return.
     return {
       count: state.count + 1,
       showCounter : state.showCounter,
