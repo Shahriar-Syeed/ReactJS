@@ -10,6 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
   dispatch({type: 'increment'});
 };
 
+  const increaseHandler = () =>{
+    dispatch({type: 'increase', payload: 5, })
+  };
+
 const decrementHandler = () => {
    dispatch({type: 'decrement'});
  };
@@ -20,6 +24,9 @@ const decrementHandler = () => {
       <h2 style={{textAlign:'center', color: "crimson"}}>Count is {counterValue}</h2>
         <button style={{padding: '4px 8px', marginInline: '4px',}} onClick={incrementHandler}>
           +
+        </button>
+        <button style={{padding: '4px 8px', marginInline: '4px',}} onClick={increaseHandler}>
+          increase by 5
         </button>
         <button style={{padding: '4px 8px', marginInline: '4px',}} onClick={decrementHandler}>
           -
