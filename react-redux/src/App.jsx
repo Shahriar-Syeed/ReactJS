@@ -1,13 +1,16 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Counter from './compnents/Counter'
-
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import Counter from './components/Counter.jsx';
+import Header from './components/Header.jsx';
+import Auth from './components/Auth.jsx';
 function App() {
 
 
   return (
     <>
+    <Header/>
+    <Auth/>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
