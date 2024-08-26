@@ -1,26 +1,42 @@
 import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "../store";
 
  const Counter = () => {
   const dispatch = useDispatch();
-  const counterValue = useSelector(state => state.count);//automatically subscribe and receive latest value
-  const show = useSelector(state => state.showCounter);
+  const counterValue = useSelector(state => state.counter.count);//automatically subscribe and receive latest value
+  const show = useSelector(state => state.counter.showCounter);
 
  console.log(counterValue);
 
+//  const incrementHandler = () => {
+//   dispatch({type: 'increment'});
+// };
+
+//   const increaseHandler = () =>{
+//     dispatch({type: 'increase', payload: 5, })
+//   };
+
+// const decrementHandler = () => {
+//    dispatch({type: 'decrement'});
+//  };
+
+//   const  togglerCounterHandler = () => {
+//     dispatch({type: 'toggle'})
+//   };
  const incrementHandler = () => {
-  dispatch({type: 'increment'});
+  dispatch(counterActions.increment());
 };
 
   const increaseHandler = () =>{
-    dispatch({type: 'increase', payload: 5, })
+    dispatch(counterActions.increase(5));// {type: SOME_UNIQUE_IDENTIFIER, payload: 10}
   };
 
 const decrementHandler = () => {
-   dispatch({type: 'decrement'});
+   dispatch(counterActions.decrement()); 
  };
 
   const  togglerCounterHandler = () => {
-    dispatch({type: 'toggle'})
+    dispatch(counterActions.toggleCounter());
   };
   return (
     <div className="card">
