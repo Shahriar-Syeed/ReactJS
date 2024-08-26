@@ -4,8 +4,22 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {count:0,showCounter : true,};
 
 createSlice({
-  name= 'counter',
+  name: 'counter',
   initialState: initialState,
+  reducers:{
+    increment(state){
+      state.count++;
+    },
+    decrement(state){
+      state.count--;
+    },
+    increase(state, action){
+      state.count = state.count+action.amount
+    },
+    toggleCounter(state){
+      state.showCounter = !state.showCounter;
+    },
+  }
 
 });
 
