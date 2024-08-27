@@ -72,6 +72,7 @@ import authReducer from './authentication.js';
 // }
 
 // const store = createStore(counterReducer);
+// for slice
 // const store = createStore(counterSlice.reducer);
 
 
