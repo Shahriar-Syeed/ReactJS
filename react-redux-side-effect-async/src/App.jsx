@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 // import { uiActions } from "./store/ui-slice.js";
 import Notification from "./components/UI/Notification.jsx";
-import { sendCartData } from "./store/cart-slice.js";
+// import { sendCartData } from "./store/cart-slice.js";
+import { getCartData, sendCartData } from "./store/cart-action.js";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +17,9 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
 
   let isInitial = useRef(true);
-
+  useEffect(()=>{
+    dispatch(getCartData());
+  },[dispatch]);
   // useEffect(() => {
   //   const sendCartData = async () => {
   //     dispatch(
@@ -68,7 +72,9 @@ function App() {
       isInitial.current = false;
       return;
     }
-    dispatch(sendCartData(cartValue)); //not only action but an function which return a function 
+    if(cartValue.changed){
+      dispatch(sendCartData(cartValue)); //not only action but an function which return a function 
+    }
   }, [cartValue, dispatch]);
   return (
     <>
