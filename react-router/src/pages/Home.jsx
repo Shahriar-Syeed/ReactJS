@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import reactLogo from '../assets/react.svg';
-import viteLogo from '/vite.svg';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "/vite.svg";
+import { Link } from "react-router-dom";
 
- const HomePage = () => {
+const HomePage = () => {
   const [count, setCount] = useState(0);
   return (
     <>
-    <div style={{padding: '20px', background: 'skyblue',}}>
-      <h1>My Home Page</h1>
-      <h3>
-        Go to <Link to="/products">the list of products</Link>
-      </h3>
-    </div>
-    <div>
-        <Link to='/products' target="_blank">
+      <div style={{ padding: "20px", background: "skyblue" }}>
+        <h1>My Home Page</h1>
+        <h3>
+          Go to <Link to="/products">the list of products</Link>
+        </h3>
+      </div>
+      <div>
+        <Link to="/products" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </Link>
-        <Link to='/products' target="_blank">
+        <Link to="/products" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </Link>
       </div>
@@ -34,6 +34,6 @@ import { Link } from 'react-router-dom';
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
-}
+  );
+};
 export default HomePage;
