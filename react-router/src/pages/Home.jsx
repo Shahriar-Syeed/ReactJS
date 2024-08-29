@@ -1,19 +1,25 @@
 import { useState } from 'react';
 import reactLogo from '../assets/react.svg';
 import viteLogo from '/vite.svg';
+import { Link } from 'react-router-dom';
 
  const HomePage = () => {
   const [count, setCount] = useState(0);
   return (
     <>
-    <div style={{padding: '20px', background: 'skyblue',}}><h1>My Home Page</h1></div>
+    <div style={{padding: '20px', background: 'skyblue',}}>
+      <h1>My Home Page</h1>
+      <h3>
+        Go to <Link to="/products">the list of products</Link>
+      </h3>
+    </div>
     <div>
-        <a href="https://vitejs.dev" target="_blank">
+        <Link to='/products' target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
+        </Link>
+        <Link to='/products' target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        </Link>
       </div>
       <h1>Vite + React</h1>
       <div className="card">
