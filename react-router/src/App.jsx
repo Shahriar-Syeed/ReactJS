@@ -1,24 +1,23 @@
 
 import './App.css';
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import HomePage from './pages/Home.jsx';
-// import ProductsPage from './pages/ProductsPage.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/Home.jsx';
+import ProductsPage from './pages/ProductsPage.jsx';
 
 
 // https://example.com
 
-// const router = createBrowserRouter([
-//   {path: '/', element: <HomePage/> },
-//   {path: '/products', element: <ProductsPage/> },
-// ]);
+const router = createBrowserRouter([
+  {path: '/', element: <HomePage/> },
+  {path: '/products', element: <ProductsPage/> },
+]);
 
 function App() {
   
 
   return (
     <>
-    <h1>Hello</h1>
-    {/* <RouterProvider router={router}/> */}
+    <RouterProvider router={router}/>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
