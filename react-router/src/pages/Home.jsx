@@ -1,10 +1,14 @@
 import { useState } from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
+  function navigateHandler(){
+    navigate('/products');
+  }
   return (
     <>
       <div style={{ padding: "20px", background: "skyblue" }}>
@@ -12,6 +16,9 @@ const HomePage = () => {
         <h3>
           Go to <Link to="/products">the list of products</Link>
         </h3>
+        <div>
+          <button onClick={navigateHandler}>Navigate to products</button>
+        </div>
       </div>
       <div>
         <Link to="/products" target="_blank">
