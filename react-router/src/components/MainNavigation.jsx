@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation() {
@@ -7,10 +7,31 @@ export default function MainNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({isActive}) =>
+                isActive ? classes.active : ''
+              }
+              style={({isActive}) =>
+                ({fontWeight: isActive ? '900' : '400',})
+              }
+              end
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/products">Products</Link>
+            <NavLink
+              to="/products"
+              className={({isActive}) =>
+                isActive ? classes.active : ''
+              }
+              style={({isActive}) =>
+                ({fontWeight: isActive ? '900' : '400',})
+              }
+            >
+              Products
+            </NavLink>
           </li>
         </ul>
       </nav>
