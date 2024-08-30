@@ -10,15 +10,28 @@ import ProductDetailPage from './pages/ProductDetailPage.jsx';
 
 // https://example.com
 
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <RootLayout />,
+//     errorElement:<ErrorPage />,
+//     children: [
+//       {path: '/', element: <HomePage /> },
+//       {path: '/products', element: <ProductsPage /> },
+//       {path: '/products/:productId', element: <ProductDetailPage /> },
+//     ],
+//   },
+  
+// ]);
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement:<ErrorPage />,
     children: [
-      {path: '/', element: <HomePage /> },
-      {path: '/products', element: <ProductsPage /> },
-      {path: '/products/:productId', element: <ProductDetailPage /> },
+      {path: '', element: <HomePage /> },
+      {path: 'products', element: <ProductsPage /> },
+      {path: 'products/:productId', element: <ProductDetailPage /> },
     ],
   },
   

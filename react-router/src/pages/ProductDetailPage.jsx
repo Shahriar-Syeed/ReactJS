@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function ProductDetailPage() {
@@ -7,6 +7,7 @@ export default function ProductDetailPage() {
     <>
       <h2>ProductDetailPage</h2>
       <h3>{params.productId}</h3>
+      <Link to='..' relative="path">Back</Link>
     </>
   );
 }
