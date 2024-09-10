@@ -8,7 +8,7 @@ function EventsPage() {
   return (
     <>
       
-       <EventsList events={events} />
+       <EventsList />
     </>
   );
 }
