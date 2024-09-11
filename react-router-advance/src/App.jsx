@@ -2,7 +2,7 @@
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./page/HomePage.jsx";
-import EventsPage, { loader as eventsLoader } from "./page/EventsPage.jsx";
+import EventsPage, { loaderEvent as eventsLoader } from "./page/EventsPage.jsx";
 import EventDetailPage from "./page/EventDetailPage.jsx";
 import NewEventPage from "./page/NewEventPage.jsx";
 import EditEventPage from "./page/EditEventPage.jsx";
@@ -44,7 +44,7 @@ function App() {
             {
               index: true,
               element: <EventsPage />,
-              loader: eventsLoader(),
+              loader: eventsLoader,
             },
             { path: ":eventId", element: <EventDetailPage /> },
             { path: "new", element: <NewEventPage /> },
