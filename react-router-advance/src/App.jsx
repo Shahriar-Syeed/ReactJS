@@ -8,6 +8,7 @@ import NewEventPage from "./page/NewEventPage.jsx";
 import EditEventPage from "./page/EditEventPage.jsx";
 import RootLayout from "./page/Root.jsx";
 import EventsRoot from "./page/EventsRoot.jsx";
+// import { loaderEvent } from "./page/loaderEvent.jsx";
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
