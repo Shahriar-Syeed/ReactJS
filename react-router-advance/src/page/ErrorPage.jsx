@@ -8,7 +8,7 @@ export default function ErrorPage() {
 
   let title = 'An Error occurred!';
   let message = 'Something went wrong!';
-  console.log(error.status);
+  console.log(error);
 
   if (error.status === 500){
     // message = JSON.parse(error.data).message;
