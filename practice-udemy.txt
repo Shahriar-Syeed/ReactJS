@@ -180,3 +180,188 @@ h2 {
 .text-button:hover {
   background: #cbd8fc;
 }
+
+
+Tow way binding
+
+export default function Review({ feedback, name }) {
+  return (
+    <figure>
+      <blockquote>
+        <p>{feedback}</p>
+      </blockquote>
+      <figcaption>{name}</figcaption>
+    </figure>
+  );
+}
+
+import React, {useState} from 'react';
+import Review from './Review'
+// don't change the Component name "App"
+function App() {
+    const [name,setName]=useState('')
+    const [feedback,setFeedback]=useState('')
+    function handleChangeName(event){
+        setName(event.target.value)
+    }
+    function handleFeedback(event){
+        setFeedback(event.target.value);
+    }
+  return (
+    <>
+      <section id="feedback">
+        <h2>Please share some feedback</h2>
+        <p>
+          <label>Your Feedback</label>
+          <textarea onChange={handleFeedback} value={feedback} />
+        </p>
+        <p>
+          <label>Your Name</label>
+          <input type="text" onChange={handleChangeName} value={name}/>
+        </p>
+      </section>
+      <section id="draft">
+        <h2>Your feedback</h2>
+
+        <Review feedback={feedback} name={name}/>
+
+        <p>
+          <button>Save</button>
+        </p>
+      </section>
+    </>
+  );
+}
+
+export default App;
+import React from 'react';
+
+import Workout from './Workout';
+
+const workouts = [
+  {
+    title: 'Pushups',
+    description: 'Do 30 pushups',
+    time: 1000 * 60 * 3,
+  },
+  {
+    title: 'Squats',
+    description: 'Do 30 squats',
+    time: 1000 * 60 * 2,
+  },
+  {
+    title: 'Pullups',
+    description: 'Do 10 pullups',
+    time: 1000 * 60 * 3,
+  },
+];
+
+function App() {
+  const [completedWorkouts, setCompletedWorkouts] = React.useState([]);
+
+  function handleWorkoutComplete(workoutTitle) {
+    setCompletedWorkouts((prevCompletedWorkouts) => [
+      ...prevCompletedWorkouts,
+      workoutTitle,
+    ]);
+  }
+
+  return (
+    <main>
+      <section>
+        <h2>Choose a workout</h2>
+        <ul>
+          {workouts.map((workout) => (
+            <li key={workout.title}>
+              <Workout
+                {...workout}
+                onComplete={() => handleWorkoutComplete(workout.title)}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Completed workouts</h2>
+        <ul>
+          {completedWorkouts.map((workoutTitle, index) => (
+            <li key={index}>{workoutTitle}</li>
+          ))}
+        </ul>
+      </section>
+    </main>
+  );
+}
+
+export default App;
+import {useState, useRef} from 'react'
+export default function Workout({ title, description, time, onComplete }) {
+    const timer = useRef();
+  function handleStartWorkout() {
+    timer.current = setTimeout(handleStopWorkout, time);
+  }
+
+  function handleStopWorkout() {
+    // Todo: Stop timer
+    clearTimeout(timer.current);
+    onComplete();
+  }
+
+  return (
+    <article className="workout">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <p>{time}</p>
+      <p>
+        <button onClick={handleStartWorkout}>Start</button>
+        <button onClick={handleStopWorkout}>Stop</button>
+      </p>
+    </article>
+  );
+}
+import Input from './Input';
+import {useRef} from 'react'
+
+export const userData = {
+  name: '',
+  email: '',
+};
+
+export function App() {
+    const name = useRef();
+    const email = useRef();
+  function handleSaveData() {
+    const enteredName = name.current.value;
+    const enteredEmail = email.current.value;
+    userData.name = enteredName;
+    userData.email = enteredEmail;
+
+    console.log(userData);
+  }
+
+  return (
+    <div id="app">
+      <Input type="text" label="Your Name" ref={name} />
+      <Input type="email" label="Your E-Mail" ref={email}/>
+      <p id="actions">
+        <button onClick={handleSaveData}>Save Data</button>
+      </p>
+    </div>
+  );
+}
+import { forwardRef } from 'react';
+const Input = forwardRef(function Input({label, ...props},ref) {
+  // Todo: Accept forwarded ref and "connect" it to the <input> element
+  return (
+    <p className="control">
+      <label>{label}</label>
+      {/* Todo: "Forward" remaining props to <input> element */}
+      <input ref={ref} {...props} />
+    </p>
+  );
+})
+export default Input;
+
+
+
