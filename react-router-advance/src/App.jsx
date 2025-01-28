@@ -16,7 +16,10 @@ import RootLayout from "./page/Root.jsx";
 import EventsRoot from "./page/EventsRoot.jsx";
 import ErrorPage from "./page/ErrorPage.jsx";
 
-import {action as dynamicEventAction} from "./components/EventForm.jsx"
+import { action as dynamicEventAction } from "./components/EventForm.jsx";
+import NewsletterPage, {
+  action as newsletterAction,
+} from "./page/NewsletterPage.jsx";
 // import { loaderEvent } from "./page/loaderEvent.jsx";
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
@@ -67,12 +70,25 @@ function App() {
                   element: <EventDetailPage />,
                   action: deleteEventAction,
                 },
-                { path: "edit", element: <EditEventPage />, action: dynamicEventAction,},
+                {
+                  path: "edit",
+                  element: <EditEventPage />,
+                  action: dynamicEventAction,
+                },
               ],
             },
             // { path: "new", element: <NewEventPage />, action: newEventAction },
-            { path: "new", element: <NewEventPage />, action: dynamicEventAction },
+            {
+              path: "new",
+              element: <NewEventPage />,
+              action: dynamicEventAction,
+            },
           ],
+        },
+        {
+          path: "newsletter",
+          element: <NewsletterPage />,
+          action: newsletterAction,
         },
       ],
     },
