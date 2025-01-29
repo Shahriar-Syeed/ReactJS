@@ -1,7 +1,10 @@
+import PageContent from "../components/PageContent";
 
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <PageContent title="Welcome!">
+      <p>Browse all our amazing events!</p>
+    </PageContent>
   )
 }
