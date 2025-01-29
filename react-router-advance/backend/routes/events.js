@@ -12,7 +12,9 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     const events = await getAll();
-    res.json({ events: events });
+    setTimeout(() => {      
+      res.json({ events: events });
+    }, 3000);
   } catch (error) {
     next(error);
   }
@@ -57,7 +59,7 @@ router.post('/', async (req, res, next) => {
 
   try {
     await add(data);
-    setTimeout(()=>{
+    setT imeout(()=>{
 
     },10000);
     res.status(201).json({ message: 'Event saved.', event: data });
